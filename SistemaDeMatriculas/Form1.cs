@@ -30,7 +30,7 @@ namespace SistemaDeMatriculas
         private void Login_Click(object sender, EventArgs e)
         {
             //boton de login 
-
+            // Código para verificar las credenciales y autenticar al usuario
             if (intentosFallidos >= 3)
             {
                 MessageBox.Show("Has llegado al número máximo de intentos. El programa se cerrará.");
@@ -44,6 +44,11 @@ namespace SistemaDeMatriculas
             if (ValidarCredenciales(nombreUsuario, contraseña))
             {
                 intentosFallidos = 0;
+                //Abre el formulario principal y cerrar/oculta el formulario de login
+                FormPrincipal formPrincipal = new FormPrincipal();
+                formPrincipal.Show();
+                this.Hide(); 
+
             }
             else
             {
@@ -86,6 +91,14 @@ namespace SistemaDeMatriculas
         {
             // Finalizar el programa
             Application.Exit();
+            this.Close();
+        }
+
+        private void btnRegistro_Click(object sender, EventArgs e)
+        {
+            FormRegistro formRegistro = new FormRegistro();
+            formRegistro.Show();
+            this.Hide(); // Close | Oculta el formulario de login 
         }
     }
 }

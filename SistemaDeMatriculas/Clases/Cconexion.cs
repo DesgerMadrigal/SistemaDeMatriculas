@@ -14,9 +14,6 @@ namespace SistemaDeMatriculas.Clases
         static string user = "rarz";
         static string pass = "exodus14@.#";
 
-
-        //private string lcconexion = $"Data Source={servidor};Initial Catalog={bd};Integrated Security=True;Persist Security Info=true;";
-        //private string cconexion = "Server=tcp:bdproyectos.database.windows.net,1433;Initial Catalog=usuarios;Persist Security Info=False;User ID=rarz;Password=exodus14@.#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private string cconexion = $"Server={servidor},1433;Initial Catalog={bd};Persist Security Info=False;User ID={user};Password={pass};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public SqlConnection ObtenerConexion()

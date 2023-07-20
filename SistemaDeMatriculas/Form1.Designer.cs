@@ -39,7 +39,7 @@ namespace SistemaDeMatriculas
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Salir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRegistro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +47,7 @@ namespace SistemaDeMatriculas
             // Login
             // 
             this.Login.BackColor = System.Drawing.Color.White;
-            this.Login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Login.FlatAppearance.BorderSize = 0;
             this.Login.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Login.Location = new System.Drawing.Point(438, 250);
             this.Login.Name = "Login";
@@ -131,7 +131,7 @@ namespace SistemaDeMatriculas
             // Salir
             // 
             this.Salir.BackColor = System.Drawing.Color.White;
-            this.Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Salir.FlatAppearance.BorderSize = 0;
             this.Salir.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Salir.Location = new System.Drawing.Point(373, 302);
             this.Salir.Name = "Salir";
@@ -141,18 +141,19 @@ namespace SistemaDeMatriculas
             this.Salir.UseVisualStyleBackColor = false;
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
-            // button1
+            // btnRegistro
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(286, 250);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 25);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Registrarse";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnRegistro.BackColor = System.Drawing.Color.White;
+            this.btnRegistro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRegistro.FlatAppearance.BorderSize = 0;
+            this.btnRegistro.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistro.Location = new System.Drawing.Point(286, 250);
+            this.btnRegistro.Name = "btnRegistro";
+            this.btnRegistro.Size = new System.Drawing.Size(90, 25);
+            this.btnRegistro.TabIndex = 19;
+            this.btnRegistro.Text = "Registrarse";
+            this.btnRegistro.UseVisualStyleBackColor = false;
+            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
             // Form1
             // 
@@ -160,7 +161,7 @@ namespace SistemaDeMatriculas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRegistro);
             this.Controls.Add(this.Login);
             this.Controls.Add(this.ChMostrar);
             this.Controls.Add(this.TxTContraseña);
@@ -192,7 +193,7 @@ namespace SistemaDeMatriculas
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Salir;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRegistro;
     }
 }
 
