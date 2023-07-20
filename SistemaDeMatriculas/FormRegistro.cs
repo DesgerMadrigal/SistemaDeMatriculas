@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace SistemaDeMatriculas
 {
@@ -31,6 +32,10 @@ namespace SistemaDeMatriculas
             // Validar los datos ingresados antes de guardarlos en la base de datos
             string nombreUsuario = TxtNombreUsuarioR.Text;
             string contraseña = TxtContraseñaR.Text;
+            string sal = GenerarSalAleatoria();
+            string contraseñaConSal = contraseña + sal;
+            string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
+
 
             if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña))
             {
@@ -46,7 +51,7 @@ namespace SistemaDeMatriculas
             }
 
             // Agregar el nuevo usuario a la base de datos
-            if (AgregarNuevoUsuario(nombreUsuario, contraseña))
+            if (AgregarNuevoUsuario(nombreUsuario, contraseña, sal))
             {
                 MessageBox.Show("Registro exitoso. ¡Ahora puede iniciar sesión!");
                 LimpiarCampos();
@@ -77,16 +82,17 @@ namespace SistemaDeMatriculas
             }
         }
 
-        private bool AgregarNuevoUsuario(string nombreUsuario, string contraseña)
+        private bool AgregarNuevoUsuario(string nombreUsuario, string contraseñaHash, string sal)
         {
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, Contraseña) VALUES (@NombreUsuario, @Contraseña)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, ContraseñaHash, Salt) VALUES (@NombreUsuario, @ContraseñaHash, @Salt)", connection))
                 {
                     command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                    command.Parameters.AddWithValue("@Contraseña", contraseña);
+                    command.Parameters.AddWithValue("@ContraseñaHash", contraseñaHash);
+                    command.Parameters.AddWithValue("@Salt", sal);
 
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -120,5 +126,27 @@ namespace SistemaDeMatriculas
         {
 
         }
+        private string GenerarSalAleatoria()
+        {
+            // Generar un "sal" aleatorio utilizando un algoritmo seguro
+            byte[] randomBytes = new byte[32]; // 32 bytes = 256 bits
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return Convert.ToBase64String(randomBytes);
+        }
+
+        private string CalcularSHA256Hash(string input)
+        {
+            // Calcular el hash SHA-256 de una cadena de entrada
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
     }
 }
