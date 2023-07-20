@@ -106,7 +106,9 @@ namespace SistemaDeMatriculas
         {
             // Finalizar el programa
             Application.Exit();
-            this.Close();
+            Form1 formLogin = new Form1();
+            formLogin.Show();
+            this.Close(); // Cierra la ventana de registro
         }
 
         private void ChMostrar_CheckedChanged(object sender, EventArgs e)
