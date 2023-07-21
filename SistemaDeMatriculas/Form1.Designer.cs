@@ -99,10 +99,11 @@ namespace SistemaDeMatriculas
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(368, 92);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(244)))), ((int)(((byte)(211)))));
+            this.label1.Font = new System.Drawing.Font("Cambria", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(367, 117);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 37);
+            this.label1.Size = new System.Drawing.Size(126, 43);
             this.label1.TabIndex = 38;
             this.label1.Text = "LOGIN";
             // 
@@ -118,6 +119,7 @@ namespace SistemaDeMatriculas
             this.btnRegistro.TabIndex = 37;
             this.btnRegistro.Text = "Registrarse";
             this.btnRegistro.UseVisualStyleBackColor = false;
+            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click_1);
             // 
             // Login
             // 
@@ -130,6 +132,7 @@ namespace SistemaDeMatriculas
             this.Login.TabIndex = 36;
             this.Login.Text = "Login";
             this.Login.UseVisualStyleBackColor = false;
+            this.Login.Click += new System.EventHandler(this.Login_Click_1);
             // 
             // ChMostrar
             // 
@@ -143,6 +146,7 @@ namespace SistemaDeMatriculas
             this.ChMostrar.TabIndex = 35;
             this.ChMostrar.Text = "Mostrar";
             this.ChMostrar.UseVisualStyleBackColor = false;
+            this.ChMostrar.CheckedChanged += new System.EventHandler(this.ChMostrar_CheckedChanged);
             // 
             // TxTContraseña
             // 

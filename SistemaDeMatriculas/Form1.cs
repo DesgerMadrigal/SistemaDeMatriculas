@@ -29,7 +29,7 @@ namespace SistemaDeMatriculas
             //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 250; 244; 211
         }
 
-        private void Login_Click(object sender, EventArgs e)
+        private void Login_Click_1(object sender, EventArgs e)
         {
             //boton de login 
             // Código para verificar las credenciales y autenticar al usuario
@@ -106,13 +106,7 @@ namespace SistemaDeMatriculas
             }
         }
 
-        private void ChMostrar_CheckedChanged_1(object sender, EventArgs e)
-        {
-            //boton para hacer visible la contraseña
-            Contraseña.UseSystemPasswordChar = !ChMostrar.Checked;
-        }
-
-        private void btnRegistro_Click(object sender, EventArgs e)
+        private void btnRegistro_Click_1(object sender, EventArgs e)
         {
             FormRegistro formRegistro = new FormRegistro();
             formRegistro.Show();
@@ -141,6 +135,12 @@ namespace SistemaDeMatriculas
             this.WindowState = FormWindowState.Normal;
             btnRestaurar.Visible = false;
             btnMaximizar.Visible = true;
+        }
+
+        private void ChMostrar_CheckedChanged(object sender, EventArgs e)
+        {
+            //boton para hacer visible la contraseña
+            Contraseña.UseSystemPasswordChar = !ChMostrar.Checked;
         }
     }
 }
