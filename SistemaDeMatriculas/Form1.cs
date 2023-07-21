@@ -25,7 +25,8 @@ namespace SistemaDeMatriculas
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //tamaño 1300; 650
+            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 250; 244; 211
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -111,18 +112,35 @@ namespace SistemaDeMatriculas
             Contraseña.UseSystemPasswordChar = !ChMostrar.Checked;
         }
 
-        private void Salir_Click(object sender, EventArgs e)
-        {
-            // Finalizar el programa
-            Application.Exit();
-            this.Close();
-        }
-
         private void btnRegistro_Click(object sender, EventArgs e)
         {
             FormRegistro formRegistro = new FormRegistro();
             formRegistro.Show();
             this.Hide(); // Close | Oculta el formulario de login 
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizar.Visible = false;
+            btnRestaurar.Visible = true;
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnRestaurar.Visible = false;
+            btnMaximizar.Visible = true;
         }
     }
 }

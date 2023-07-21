@@ -25,7 +25,8 @@ namespace SistemaDeMatriculas
 
         private void FormRegistro_Load(object sender, EventArgs e)
         {
-
+            //tamaño 1300; 650
+            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 250; 244; 211
         }
         private void BtnRegistrar_Click_1(object sender, EventArgs e)
         {
