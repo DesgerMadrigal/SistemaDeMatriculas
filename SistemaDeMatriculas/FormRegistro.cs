@@ -111,7 +111,6 @@ namespace SistemaDeMatriculas
         private void Salir_Click(object sender, EventArgs e)
         {
             // Finalizar el programa
-            Application.Exit();
             Form1 formLogin = new Form1();
             formLogin.Show();
             this.Close(); // Cierra la ventana de registro
