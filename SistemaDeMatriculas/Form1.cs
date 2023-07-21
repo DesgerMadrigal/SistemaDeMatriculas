@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace SistemaDeMatriculas
 {   
@@ -69,15 +70,38 @@ namespace SistemaDeMatriculas
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Contraseña = @Contraseña", connection))
+                using (SqlCommand command = new SqlCommand("SELECT ContraseñaHash, Salt FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
                 {
                     command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                    command.Parameters.AddWithValue("@Contraseña", contraseña);
 
-                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string contraseñaHashDB = reader["ContraseñaHash"].ToString();
+                            string sal = reader["Salt"].ToString();
+                            string contraseñaConSal = contraseña + sal;
+                            string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
 
-                    return count > 0;
+                            return contraseñaHash == contraseñaHashDB;
+                        }
+                        else
+                        {
+                            return false; // El usuario no existe en la base de datos
+                        }
+                    }
                 }
+            }
+        }
+
+        private string CalcularSHA256Hash(string input)
+        {
+            // Calcular el hash SHA-256 de una cadena de entrada
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+                return Convert.ToBase64String(hashBytes);
             }
         }
 
