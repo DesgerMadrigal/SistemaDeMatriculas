@@ -2,7 +2,7 @@
 
 namespace SistemaDeMatriculas.Clases
 {
-    internal class Cconexion
+    public class Cconexion
     {
         static string servidor = "tcp:bdproyectos.database.windows.net";
         static string bd = "SistemaMatriculas";
