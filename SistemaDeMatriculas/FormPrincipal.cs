@@ -63,5 +63,10 @@ namespace SistemaDeMatriculas
         {
             this.WindowState = FormWindowState.Minimized;  
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
