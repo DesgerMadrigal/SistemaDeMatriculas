@@ -46,12 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\ClasesDAL\AulaDAL.cs" />
+    <Compile Include="Clases\ClasesDAL\ClasesDAL.cs" />
     <Compile Include="Clases\ClasesDAL\DocenteDAL.cs" />
+    <Compile Include="Clases\ClasesDAL\HorarioDAL.cs" />
+    <Compile Include="Clases\ClasesDAL\MatriculaDAL.cs" />
+    <Compile Include="Clases\ClasesDAL\OfertaDAL.cs" />
     <Compile Include="Clases\ClasesNormales\Cconexion.cs" />
-    <Compile Include="Clases\ClasesNormales\Docente.cs" />
-    <Compile Include="Clases\ClasesNormales\Estudiante.cs" />
     <Compile Include="Clases\ClasesDAL\EstudianteDAL.cs" />
-    <Compile Include="Clases\ClasesNormales\Materia.cs" />
     <Compile Include="Clases\ClasesDAL\MateriaDAL.cs" />
     <Compile Include="Clases\ClasesDAL\UsuarioDAL.cs" />
     <Compile Include="Form1.cs">
