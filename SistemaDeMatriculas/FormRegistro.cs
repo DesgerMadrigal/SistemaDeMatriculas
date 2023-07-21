@@ -51,7 +51,7 @@ namespace SistemaDeMatriculas
             }
 
             // Agregar el nuevo usuario a la base de datos
-            if (AgregarNuevoUsuario(nombreUsuario, contraseña, sal))
+            if (AgregarNuevoUsuario(nombreUsuario, contraseñaHash, sal))
             {
                 MessageBox.Show("Registro exitoso. ¡Ahora puede iniciar sesión!");
                 LimpiarCampos();
