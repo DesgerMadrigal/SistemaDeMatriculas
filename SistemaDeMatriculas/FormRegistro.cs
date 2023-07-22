@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using SistemaDeMatriculas.Clases;
 
 namespace SistemaDeMatriculas
 {
@@ -22,13 +17,12 @@ namespace SistemaDeMatriculas
             TxtContraseñaR.UseSystemPasswordChar = true; //mostrar la contraseña en asteriscos
         }
 
-
         private void FormRegistro_Load(object sender, EventArgs e)
         {
-            //tamaño 1300; 650
-            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 250; 244; 211
+            //tamaño 1100; 550
+            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 244; 233; 205
         }
-        private void BtnRegistrar_Click_1(object sender, EventArgs e)
+        private void BtnRegistrar_Click(object sender, EventArgs e)
         {
             // Validar los datos ingresados antes de guardarlos en la base de datos
             string nombreUsuario = TxtNombreUsuarioR.Text;
@@ -36,7 +30,7 @@ namespace SistemaDeMatriculas
             string sal = GenerarSalAleatoria();
             string contraseñaConSal = contraseña + sal;
             string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
-
+            bool esFuncionario = false;
 
             if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contraseña))
             {
@@ -52,7 +46,7 @@ namespace SistemaDeMatriculas
             }
 
             // Agregar el nuevo usuario a la base de datos
-            if (AgregarNuevoUsuario(nombreUsuario, contraseñaHash, sal))
+            if (AgregarNuevoUsuario(nombreUsuario, contraseñaHash, sal, esFuncionario))
             {
                 MessageBox.Show("Registro exitoso. ¡Ahora puede iniciar sesión!");
                 LimpiarCampos();
@@ -65,7 +59,6 @@ namespace SistemaDeMatriculas
                 MessageBox.Show("Ocurrió un error al registrar al usuario. Inténtelo nuevamente.");
             }
         }
-
         private bool UsuarioExiste(string nombreUsuario)
         {
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
@@ -83,17 +76,19 @@ namespace SistemaDeMatriculas
             }
         }
 
-        private bool AgregarNuevoUsuario(string nombreUsuario, string contraseñaHash, string sal)
+        private bool AgregarNuevoUsuario(string nombreUsuario, string contraseñaHash, string sal, bool esFuncionario)
         {
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, ContraseñaHash, Salt) VALUES (@NombreUsuario, @ContraseñaHash, @Salt)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, ContraseñaHash, Salt, EsFuncionario, FechaCreacion) VALUES (@NombreUsuario, @ContraseñaHash, @Salt, @EsFuncionario, @FechaCreacion)", connection))
                 {
                     command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
                     command.Parameters.AddWithValue("@ContraseñaHash", contraseñaHash);
                     command.Parameters.AddWithValue("@Salt", sal);
+                    command.Parameters.AddWithValue("@EsFuncionario", esFuncionario ? 1 : 0);
+                    command.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
 
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -102,30 +97,6 @@ namespace SistemaDeMatriculas
             }
         }
 
-        private void LimpiarCampos()
-        {
-            // Limpia los campos después de un registro exitoso
-            TxtNombreUsuarioR.Text = "";
-            TxtContraseñaR.Text = "";
-        }
-
-        private void Salir_Click(object sender, EventArgs e)
-        {
-            // Finalizar el programa
-            Form1 formLogin = new Form1();
-            formLogin.Show();
-            this.Close(); // Cierra la ventana de registro
-        }
-
-        private void ChMostrar_CheckedChanged(object sender, EventArgs e)
-        {
-            TxtContraseñaR.UseSystemPasswordChar = !ChMostrar.Checked;
-        }
-
-        private void TxtContraseñaR_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private string GenerarSalAleatoria()
         {
             // Generar un "sal" aleatorio utilizando un algoritmo seguro
@@ -148,5 +119,54 @@ namespace SistemaDeMatriculas
             }
         }
 
+        private void LimpiarCampos()
+        {
+            // Limpia los campos después de un registro exitoso
+            TxtNombreUsuarioR.Text = "";
+            TxtContraseñaR.Text = "";
+        }
+
+        private void ChMostrar_CheckedChanged_1(object sender, EventArgs e)
+        {
+            TxtContraseñaR.UseSystemPasswordChar = !ChMostrar.Checked;
+        }
+
+
+        private void Salir_Click_1(object sender, EventArgs e)
+        {
+            // Finalizar el programa
+            Form1 formLogin = new Form1();
+            formLogin.Show();
+            this.Close(); // Cierra la ventana de registro
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            btnMaximizar.Visible = false;
+            btnRestaurar.Visible = true;
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            btnRestaurar.Visible = false;
+            btnMaximizar.Visible = true;
+        }
     }
 }

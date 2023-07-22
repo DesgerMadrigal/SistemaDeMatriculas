@@ -6,6 +6,9 @@ namespace SistemaDeMatriculas.Clases
 {
     public class Aula
     {
+        public int Id { get; set; } 
+        public int Capacidad { get; set; }
+        public string Condicion { get; set; }
         public string CodigoAula { get; set; }
         public string Nombre { get; set; }
         public string Estado { get; set; }
@@ -65,45 +68,9 @@ namespace SistemaDeMatriculas.Clases
         public string ContraseñaHash { get; set; }
         public string Salt { get; set; }
         public bool EsFuncionario { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaUltimoInicioSesion { get; set; }
         public bool Activo { get; set; }
-
-        public Usuario()
-        {
-            // Constructor vacío necesario para la serialización/deserialización de objetos
-        }
-
-        public Usuario(string nombreUsuario, string contraseña, bool esFuncionario)
-        {
-            NombreUsuario = nombreUsuario;
-            EsFuncionario = esFuncionario;
-
-            // Generar una nueva contraseña y salt, y calcular el hash
-            Salt = GenerarSalAleatoria();
-            string contraseñaConSal = contraseña + Salt;
-            ContraseñaHash = CalcularSHA256Hash(contraseñaConSal);
-
-            Activo = true;
-        }
-
-        private string GenerarSalAleatoria()
-        {
-            byte[] randomBytes = new byte[32]; // 32 bytes = 256 bits
-            using (System.Security.Cryptography.RandomNumberGenerator rng = System.Security.Cryptography.RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomBytes);
-            }
-            return Convert.ToBase64String(randomBytes);
-        }
-
-        private string CalcularSHA256Hash(string input)
-        {
-            using (System.Security.Cryptography.SHA256 sha256 = System.Security.Cryptography.SHA256.Create())
-            {
-                byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
-                byte[] hashBytes = sha256.ComputeHash(inputBytes);
-                return Convert.ToBase64String(hashBytes);
-            }
-        }
     }
 
     public class MateriaEstudiante

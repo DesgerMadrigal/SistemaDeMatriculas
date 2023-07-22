@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace SistemaDeMatriculas.Clases.ClasesDAL
+namespace SistemaDeMatriculas.Clases
 {
     public class MatriculaDAL
     {

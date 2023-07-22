@@ -3,7 +3,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 
-namespace SistemaDeMatriculas.Clases.ClasesDAL
+namespace SistemaDeMatriculas.Clases
 {
     public class SeguridadDAL
     {

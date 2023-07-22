@@ -2,66 +2,32 @@
 using System.Text;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+
 
 namespace SistemaDeMatriculas.Clases
 {
     public class UsuarioDAL
     {
-        private readonly Cconexion conexion; // Usar la clase Cconexion para obtener la conexión
+        private Cconexion conexion;
 
         public UsuarioDAL(Cconexion conexion)
         {
             this.conexion = conexion;
         }
 
-        // Método para autenticar un usuario en el sistema
-        public bool AutenticarUsuario(string nombreUsuario, string contraseña)
+        public bool AsignarRolUsuario(int idUsuario, int idRol)
         {
             using (SqlConnection connection = conexion.ObtenerConexion())
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SELECT ContraseñaHash, Salt FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO UsuariosRoles (IdUsuario, IdRol) VALUES (@IdUsuario, @IdRol)", connection))
                 {
-                    command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string contraseñaHashDB = reader["ContraseñaHash"].ToString();
-                            string sal = reader["Salt"].ToString();
-                            string contraseñaConSal = contraseña + sal;
-                            string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
-
-                            return contraseñaHash == contraseñaHashDB;
-                        }
-                        else
-                        {
-                            return false; // El usuario no existe en la base de datos
-                        }
-                    }
-                }
-            }
-        }
-
-        // Método para agregar un nuevo usuario a la base de datos
-        public bool AgregarUsuario(string nombreUsuario, string contraseña, bool esFuncionario)
-        {
-            string sal = GenerarSalAleatoria();
-            string contraseñaConSal = contraseña + sal;
-            string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
-
-            using (SqlConnection connection = conexion.ObtenerConexion())
-            {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, ContraseñaHash, Salt, EsFuncionario) VALUES (@NombreUsuario, @ContraseñaHash, @Salt, @EsFuncionario)", connection))
-                {
-                    command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                    command.Parameters.AddWithValue("@ContraseñaHash", contraseñaHash);
-                    command.Parameters.AddWithValue("@Salt", sal);
-                    command.Parameters.AddWithValue("@EsFuncionario", esFuncionario);
+                    command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    command.Parameters.AddWithValue("@IdRol", idRol);
 
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -70,7 +36,6 @@ namespace SistemaDeMatriculas.Clases
             }
         }
 
-        // Método para verificar si un nombre de usuario ya existe en la base de datos
         public bool UsuarioExiste(string nombreUsuario)
         {
             using (SqlConnection connection = conexion.ObtenerConexion())
@@ -88,26 +53,50 @@ namespace SistemaDeMatriculas.Clases
             }
         }
 
-        // Método para generar un "sal" aleatorio utilizando un algoritmo seguro
-        private string GenerarSalAleatoria()
+        public bool AsignarPermisoRol(int idRol, int idPermiso)
         {
-            byte[] randomBytes = new byte[32]; // 32 bytes = 256 bits
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            using (SqlConnection connection = conexion.ObtenerConexion())
             {
-                rng.GetBytes(randomBytes);
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("INSERT INTO RolesPermisos (IdRol, IdPermiso) VALUES (@IdRol, @IdPermiso)", connection))
+                {
+                    command.Parameters.AddWithValue("@IdRol", idRol);
+                    command.Parameters.AddWithValue("@IdPermiso", idPermiso);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
+                }
             }
-            return Convert.ToBase64String(randomBytes);
+        }
+        public List<Usuario> ObtenerUsuarios()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            using (SqlConnection connection = conexion.ObtenerConexion())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Usuarios", connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Usuario usuario = new Usuario
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                NombreUsuario = reader["NombreUsuario"].ToString(),
+                                // Otras propiedades del usuario si las hubiera
+                            };
+                            usuarios.Add(usuario);
+                        }
+                    }
+                }
+            }
+            return usuarios;
         }
 
-        // Método para calcular el hash SHA-256 de una cadena de entrada
-        private string CalcularSHA256Hash(string input)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] hashBytes = sha256.ComputeHash(inputBytes);
-                return Convert.ToBase64String(hashBytes);
-            }
-        }
     }
 }

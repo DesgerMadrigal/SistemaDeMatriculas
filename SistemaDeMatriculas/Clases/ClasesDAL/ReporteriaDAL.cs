@@ -189,19 +189,16 @@ namespace SistemaDeMatriculas.Clases
                             Aula aula = new Aula
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                NumeroAula = reader["NumeroAula"].ToString(),
+                                CodigoAula = reader["CodigoAula"].ToString(),
                                 Capacidad = Convert.ToInt32(reader["Capacidad"]),
                                 Condicion = reader["Condicion"].ToString()
                             };
-
                             aulas.Add(aula);
                         }
                     }
                 }
             }
-
             return aulas;
         }
     }
-
 }

@@ -1,32 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using SistemaDeMatriculas.Clases;
 
 namespace SistemaDeMatriculas
-{   
+{
     public partial class Form1 : Form
     {
         private int intentosFallidos = 0;
-        private Clases.Cconexion objetoConexion;
+        private Cconexion objetoConexion;
         public Form1()
         {
             InitializeComponent();
-            objetoConexion = new Clases.Cconexion();
+            objetoConexion = new Cconexion();
             Contraseña.UseSystemPasswordChar = true; //mostrar la contraseña en asteriscos
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //tamaño 1300; 650
-            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 250; 244; 211
+            //colores Menu: 12; 22; 24 | Barra: 0; 70; 67 | Contenedor 244; 233; 205
         }
 
         private void Login_Click_1(object sender, EventArgs e)
@@ -47,9 +42,9 @@ namespace SistemaDeMatriculas
             {
                 intentosFallidos = 0;
                 //Abre el formulario principal y cerrar/oculta el formulario de login
-                FormPrincipal formPrincipal = new FormPrincipal();
+                FormPrincipal formPrincipal = new FormPrincipal(nombreUsuario);
                 formPrincipal.Show();
-                this.Hide(); 
+                this.Hide();
 
             }
             else
@@ -84,13 +79,38 @@ namespace SistemaDeMatriculas
                             string contraseñaConSal = contraseña + sal;
                             string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
 
-                            return contraseñaHash == contraseñaHashDB;
+                            if (contraseñaHash == contraseñaHashDB)
+                            {
+                                // Credenciales correctas
+                                // Actualizar fecha de inicio de sesión y estado de activo
+                                ActualizarInicioSesionYEstado(nombreUsuario);
+                                return true;
+                            }
+                            else
+                            {
+                                return false; // Contraseña incorrecta
+                            }
                         }
                         else
                         {
                             return false; // El usuario no existe en la base de datos
                         }
                     }
+                }
+            }
+        }
+
+        private void ActualizarInicioSesionYEstado(string nombreUsuario)
+        {
+            using (SqlConnection connection = objetoConexion.ObtenerConexion())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("UPDATE Usuarios SET FechaUltimoInicioSesion = @FechaUltimoInicioSesion, Activo = 1 WHERE NombreUsuario = @NombreUsuario", connection))
+                {
+                    command.Parameters.AddWithValue("@FechaUltimoInicioSesion", DateTime.Now);
+                    command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                    command.ExecuteNonQuery();
                 }
             }
         }
@@ -105,7 +125,6 @@ namespace SistemaDeMatriculas
                 return Convert.ToBase64String(hashBytes);
             }
         }
-
         private void btnRegistro_Click_1(object sender, EventArgs e)
         {
             FormRegistro formRegistro = new FormRegistro();
@@ -141,6 +160,11 @@ namespace SistemaDeMatriculas
         {
             //boton para hacer visible la contraseña
             Contraseña.UseSystemPasswordChar = !ChMostrar.Checked;
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
