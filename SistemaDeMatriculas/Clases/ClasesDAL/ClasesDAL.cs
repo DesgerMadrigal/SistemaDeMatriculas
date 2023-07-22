@@ -51,7 +51,8 @@ namespace SistemaDeMatriculas.Clases
     public class Oferta
     {
         public int Id { get; set; }
-        public string Codigo { get; set; }
+        public string CodigoOferta { get; set; }
+        public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }

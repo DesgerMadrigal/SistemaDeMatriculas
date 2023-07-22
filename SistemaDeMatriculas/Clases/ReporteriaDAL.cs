@@ -34,7 +34,6 @@ namespace SistemaDeMatriculas.Clases
                                 EsFuncionario = Convert.ToBoolean(reader["EsFuncionario"]),
                                 Activo = Convert.ToBoolean(reader["Activo"])
                             };
-
                             usuarios.Add(usuario);
                         }
                     }
@@ -94,7 +93,7 @@ namespace SistemaDeMatriculas.Clases
                             Oferta oferta = new Oferta
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Codigo = reader["Codigo"].ToString(),
+                                CodigoOferta = reader["Codigo"].ToString(),
                                 Descripcion = reader["Descripcion"].ToString(),
                                 FechaInicio = Convert.ToDateTime(reader["FechaInicio"]),
                                 FechaFin = Convert.ToDateTime(reader["FechaFin"])
@@ -206,4 +205,3 @@ namespace SistemaDeMatriculas.Clases
     }
 
 }
-A
