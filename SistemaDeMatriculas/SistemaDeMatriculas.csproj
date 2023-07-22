@@ -52,10 +52,12 @@
     <Compile Include="Clases\ClasesDAL\HorarioDAL.cs" />
     <Compile Include="Clases\ClasesDAL\MatriculaDAL.cs" />
     <Compile Include="Clases\ClasesDAL\OfertaDAL.cs" />
+    <Compile Include="Clases\ClasesDAL\SeguridadDAL.cs" />
     <Compile Include="Clases\ClasesNormales\Cconexion.cs" />
     <Compile Include="Clases\ClasesDAL\EstudianteDAL.cs" />
     <Compile Include="Clases\ClasesDAL\MateriaDAL.cs" />
     <Compile Include="Clases\ClasesDAL\UsuarioDAL.cs" />
+    <Compile Include="Clases\ReporteriaDAL.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
