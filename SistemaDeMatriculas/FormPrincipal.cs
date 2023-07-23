@@ -21,6 +21,7 @@ namespace SistemaDeMatriculas
         {
             InitializeComponent();
             objetoConexion = new Cconexion();
+            AbrirFormHija(new Inicio());
 
         }
         public FormPrincipal(string nombreUsuario) : this()
@@ -33,16 +34,16 @@ namespace SistemaDeMatriculas
                 lblRol.Text = "Administrador";
                 // Mostrar ventanas y controles adicionales para funcionarios
                 // Por ejemplo:
-                // btnEstadisticas.Visible = true;
-                // btnGestionRoles.Visible = true;
+                //btnInicio.Visible = false;
+                //btnPerfil.Visible = true;
             }
             else
             {
                 lblRol.Text = "Estudiante";
                 // Mostrar ventanas y controles adicionales para estudiantes
                 // Por ejemplo:
-                // btnHorarios.Visible = true;
-                // btnMatricula.Visible = true;
+                //btnPerfil.Visible = false;
+                //btnInicio.Visible = true;
             }
         }
 
@@ -129,14 +130,29 @@ namespace SistemaDeMatriculas
             this.WindowState = FormWindowState.Minimized;  
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void lblNombreUsuario_Click(object sender, EventArgs e)
         {
 
+        }
+        private void AbrirFormHija(object formhija)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form fh = formhija as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.panelContenedor.Controls.Add(fh);
+            this.panelContenedor.Tag = fh;
+            fh.Show();
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new Inicio());
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new Perfil());
         }
     }
 }
