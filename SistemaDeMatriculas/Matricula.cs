@@ -23,11 +23,11 @@ namespace SistemaDeMatriculas
 
         private void Matricula_Load(object sender, EventArgs e)
         {
-            CargarCursos();
+            //CargarCursos();
         }
         private void CargarCursos()
         {
-            cmbCursos.Items.Clear(); // Limpiamos los elementos del ComboBox para evitar duplicados
+            cmbSemestre.Items.Clear(); // Limpiamos los elementos del ComboBox para evitar duplicados
 
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
@@ -44,16 +44,16 @@ namespace SistemaDeMatriculas
                             string nombreCurso = reader["Nombre"].ToString();
 
                             // Agregamos el curso al ComboBox
-                            cmbCursos.Items.Add(new CursoItem(idCurso, nombreCurso));
+                            cmbSemestre.Items.Add(new CursoItem(idCurso, nombreCurso));
                         }
                     }
                 }
             }
 
             // Si hay cursos disponibles en el ComboBox, seleccionamos el primer curso
-            if (cmbCursos.Items.Count > 0)
+            if (cmbSemestre.Items.Count > 0)
             {
-                cmbCursos.SelectedIndex = 0;
+                cmbSemestre.SelectedIndex = 0;
             }
         }
 
@@ -74,44 +74,19 @@ namespace SistemaDeMatriculas
                 return Nombre;
             }
         }
-    
 
-        private void TxTNombreUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Usuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             // Obtener los datos ingresados por el usuario en los campos del formulario
-            string nombreEstudiante = txtNombre.Text;
+            string nombreEstudiante = txtNacionalidad.Text;
             string apellidoEstudiante = txtApellidos.Text;
             DateTime fechaNacimiento = dtp1.Value;
             string direccion = txtDireccion.Text;
             string cedula = txtCedula.Text;
             string telefono = txtTelefono.Text;
             string correoElectronico = txtEmail.Text;
-            string nombreCurso = cmbCursos.Text; // Obtener el nombre del curso seleccionado en el ComboBox
+            string nombreCurso = cmbSemestre.Text; // Obtener el nombre del curso seleccionado en el ComboBox
 
             // Verificar que se hayan completado todos los campos requeridos
             if (string.IsNullOrEmpty(nombreEstudiante) || string.IsNullOrEmpty(apellidoEstudiante)
@@ -236,20 +211,50 @@ namespace SistemaDeMatriculas
         private void LimpiarCampos()
         {
             // Limpiar los campos del formulario después de guardar la matrícula
-            txtNombre.Text = "";
+            txtNacionalidad.Text = "";
             txtApellidos.Text = "";
             dtp1.Value = DateTime.Now;
             txtDireccion.Text = "";
             txtCedula.Text = "";
             txtTelefono.Text = "";
             txtEmail.Text = "";
-            cmbCursos.SelectedIndex = -1;
+            cmbSemestre.SelectedIndex = -1;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             // Cerrar el formulario de matrícula sin guardar cambios
             this.Close();
+        }
+
+        private void cmbCursos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Identificacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxTNombreUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Usuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
