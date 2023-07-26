@@ -47,6 +47,9 @@ namespace SistemaDeMatriculas
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Regresar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCedulaR = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Barra.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
@@ -55,6 +58,7 @@ namespace SistemaDeMatriculas
             this.panelContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // Barra
@@ -135,6 +139,9 @@ namespace SistemaDeMatriculas
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(233)))), ((int)(((byte)(205)))));
+            this.panelContenedor.Controls.Add(this.label2);
+            this.panelContenedor.Controls.Add(this.txtCedulaR);
+            this.panelContenedor.Controls.Add(this.pictureBox3);
             this.panelContenedor.Controls.Add(this.label1);
             this.panelContenedor.Controls.Add(this.BtnRegistrar);
             this.panelContenedor.Controls.Add(this.ChMostrar);
@@ -167,7 +174,7 @@ namespace SistemaDeMatriculas
             this.BtnRegistrar.BackColor = System.Drawing.Color.White;
             this.BtnRegistrar.FlatAppearance.BorderSize = 0;
             this.BtnRegistrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegistrar.Location = new System.Drawing.Point(453, 300);
+            this.BtnRegistrar.Location = new System.Drawing.Point(453, 287);
             this.BtnRegistrar.Name = "BtnRegistrar";
             this.BtnRegistrar.Size = new System.Drawing.Size(75, 25);
             this.BtnRegistrar.TabIndex = 35;
@@ -181,7 +188,7 @@ namespace SistemaDeMatriculas
             this.ChMostrar.BackColor = System.Drawing.Color.Transparent;
             this.ChMostrar.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ChMostrar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChMostrar.Location = new System.Drawing.Point(458, 251);
+            this.ChMostrar.Location = new System.Drawing.Point(458, 238);
             this.ChMostrar.Name = "ChMostrar";
             this.ChMostrar.Size = new System.Drawing.Size(70, 19);
             this.ChMostrar.TabIndex = 34;
@@ -193,7 +200,7 @@ namespace SistemaDeMatriculas
             // 
             this.TxTContraseña.AutoSize = true;
             this.TxTContraseña.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxTContraseña.Location = new System.Drawing.Point(334, 255);
+            this.TxTContraseña.Location = new System.Drawing.Point(334, 242);
             this.TxTContraseña.Name = "TxTContraseña";
             this.TxTContraseña.Size = new System.Drawing.Size(71, 15);
             this.TxTContraseña.TabIndex = 33;
@@ -204,7 +211,7 @@ namespace SistemaDeMatriculas
             this.TxTNombreUsuario.AutoSize = true;
             this.TxTNombreUsuario.BackColor = System.Drawing.Color.Transparent;
             this.TxTNombreUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxTNombreUsuario.Location = new System.Drawing.Point(334, 204);
+            this.TxTNombreUsuario.Location = new System.Drawing.Point(334, 156);
             this.TxTNombreUsuario.Name = "TxTNombreUsuario";
             this.TxTNombreUsuario.Size = new System.Drawing.Size(117, 15);
             this.TxTNombreUsuario.TabIndex = 32;
@@ -213,7 +220,7 @@ namespace SistemaDeMatriculas
             // TxtContraseñaR
             // 
             this.TxtContraseñaR.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseñaR.Location = new System.Drawing.Point(337, 271);
+            this.TxtContraseñaR.Location = new System.Drawing.Point(337, 258);
             this.TxtContraseñaR.Name = "TxtContraseñaR";
             this.TxtContraseñaR.Size = new System.Drawing.Size(191, 23);
             this.TxtContraseñaR.TabIndex = 31;
@@ -221,7 +228,7 @@ namespace SistemaDeMatriculas
             // TxtNombreUsuarioR
             // 
             this.TxtNombreUsuarioR.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreUsuarioR.Location = new System.Drawing.Point(337, 220);
+            this.TxtNombreUsuarioR.Location = new System.Drawing.Point(337, 172);
             this.TxtNombreUsuarioR.Name = "TxtNombreUsuarioR";
             this.TxtNombreUsuarioR.Size = new System.Drawing.Size(191, 23);
             this.TxtNombreUsuarioR.TabIndex = 30;
@@ -229,7 +236,7 @@ namespace SistemaDeMatriculas
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(301, 264);
+            this.pictureBox2.Location = new System.Drawing.Point(301, 251);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -239,7 +246,7 @@ namespace SistemaDeMatriculas
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(301, 213);
+            this.pictureBox1.Location = new System.Drawing.Point(301, 165);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -251,13 +258,43 @@ namespace SistemaDeMatriculas
             this.Regresar.BackColor = System.Drawing.Color.White;
             this.Regresar.FlatAppearance.BorderSize = 0;
             this.Regresar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Regresar.Location = new System.Drawing.Point(337, 300);
+            this.Regresar.Location = new System.Drawing.Point(337, 287);
             this.Regresar.Name = "Regresar";
             this.Regresar.Size = new System.Drawing.Size(75, 25);
             this.Regresar.TabIndex = 27;
             this.Regresar.Text = "Regresar";
             this.Regresar.UseVisualStyleBackColor = false;
             this.Regresar.Click += new System.EventHandler(this.Salir_Click_1);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(334, 198);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 15);
+            this.label2.TabIndex = 39;
+            this.label2.Text = "Cedula:";
+            // 
+            // txtCedulaR
+            // 
+            this.txtCedulaR.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCedulaR.Location = new System.Drawing.Point(337, 214);
+            this.txtCedulaR.Name = "txtCedulaR";
+            this.txtCedulaR.Size = new System.Drawing.Size(191, 23);
+            this.txtCedulaR.TabIndex = 38;
+            this.txtCedulaR.TextChanged += new System.EventHandler(this.txtCedulaR_TextChanged);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(301, 207);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 37;
+            this.pictureBox3.TabStop = false;
             // 
             // FormRegistro
             // 
@@ -281,6 +318,7 @@ namespace SistemaDeMatriculas
             this.panelContenedor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,5 +341,8 @@ namespace SistemaDeMatriculas
         private System.Windows.Forms.PictureBox btnMinimizar;
         private System.Windows.Forms.PictureBox btnMaximizar;
         private System.Windows.Forms.PictureBox btnCerrar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtCedulaR;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

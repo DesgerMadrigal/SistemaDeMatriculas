@@ -154,5 +154,10 @@ namespace SistemaDeMatriculas
         {
             AbrirFormHija(new Perfil());
         }
+
+        private void btnMatricula_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new Matricula());
+        }
     }
 }

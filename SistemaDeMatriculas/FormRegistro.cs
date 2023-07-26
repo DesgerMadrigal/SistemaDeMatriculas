@@ -25,6 +25,11 @@ namespace SistemaDeMatriculas
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
             // Validar los datos ingresados antes de guardarlos en la base de datos
+            if (!int.TryParse(txtCedulaR.Text, out int IdUsuarioCedula))
+            {
+                MessageBox.Show("La cédula debe tener ceros en vez de espacios. Ejemplo: 101110111");
+                return;
+            }
             string nombreUsuario = TxtNombreUsuarioR.Text;
             string contraseña = TxtContraseñaR.Text;
             string sal = GenerarSalAleatoria();
@@ -46,7 +51,7 @@ namespace SistemaDeMatriculas
             }
 
             // Agregar el nuevo usuario a la base de datos
-            if (AgregarNuevoUsuario(nombreUsuario, contraseñaHash, sal, esFuncionario))
+            if (AgregarNuevoUsuario(IdUsuarioCedula, nombreUsuario, contraseñaHash, sal, esFuncionario))
             {
                 MessageBox.Show("Registro exitoso. ¡Ahora puede iniciar sesión!");
                 LimpiarCampos();
@@ -76,14 +81,15 @@ namespace SistemaDeMatriculas
             }
         }
 
-        private bool AgregarNuevoUsuario(string nombreUsuario, string contraseñaHash, string sal, bool esFuncionario)
+        private bool AgregarNuevoUsuario(int IdUsuarioCedula, string nombreUsuario, string contraseñaHash, string sal, bool esFuncionario)
         {
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (NombreUsuario, ContraseñaHash, Salt, EsFuncionario, FechaCreacion) VALUES (@NombreUsuario, @ContraseñaHash, @Salt, @EsFuncionario, @FechaCreacion)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Usuarios (IdUsuarioCedula, NombreUsuario, ContraseñaHash, Salt, EsFuncionario, FechaCreacion) VALUES (@IdUsuarioCedula, @NombreUsuario, @ContraseñaHash, @Salt, @EsFuncionario, @FechaCreacion)", connection))
                 {
+                    command.Parameters.AddWithValue("@IdUsuarioCedula", IdUsuarioCedula);
                     command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
                     command.Parameters.AddWithValue("@ContraseñaHash", contraseñaHash);
                     command.Parameters.AddWithValue("@Salt", sal);
@@ -167,6 +173,11 @@ namespace SistemaDeMatriculas
             this.WindowState = FormWindowState.Normal;
             btnRestaurar.Visible = false;
             btnMaximizar.Visible = true;
+        }
+
+        private void txtCedulaR_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

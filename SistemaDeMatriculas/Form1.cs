@@ -64,39 +64,49 @@ namespace SistemaDeMatriculas
         {
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("SELECT ContraseñaHash, Salt FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
+                //IMPORTANTE, USAR TRY POR SI SE GENERA UN ERROR EN LA CONEXION CON LA BD
+                try
                 {
-                    command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                    connection.Open();
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand("SELECT ContraseñaHash, Salt FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
                     {
-                        if (reader.Read())
-                        {
-                            string contraseñaHashDB = reader["ContraseñaHash"].ToString();
-                            string sal = reader["Salt"].ToString();
-                            string contraseñaConSal = contraseña + sal;
-                            string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
+                        command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
 
-                            if (contraseñaHash == contraseñaHashDB)
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
                             {
-                                // Credenciales correctas
-                                // Actualizar fecha de inicio de sesión y estado de activo
-                                ActualizarInicioSesionYEstado(nombreUsuario);
-                                return true;
+                                string contraseñaHashDB = reader["ContraseñaHash"].ToString();
+                                string sal = reader["Salt"].ToString();
+                                string contraseñaConSal = contraseña + sal;
+                                string contraseñaHash = CalcularSHA256Hash(contraseñaConSal);
+
+                                if (contraseñaHash == contraseñaHashDB)
+                                {
+                                    // Credenciales correctas
+                                    // Actualizar fecha de inicio de sesión y estado de activo
+                                    ActualizarInicioSesionYEstado(nombreUsuario);
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false; // Contraseña incorrecta
+                                }
                             }
                             else
                             {
-                                return false; // Contraseña incorrecta
+                                return false; // El usuario no existe en la base de datos
                             }
-                        }
-                        else
-                        {
-                            return false; // El usuario no existe en la base de datos
                         }
                     }
                 }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("No se pudo conectar a la base de datos. Contacte al administrador para que agregue su ip al firewall.\n\nDetalles del error: " + ex.Message, "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false; 
+                }
+                
             }
         }
 
