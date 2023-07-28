@@ -15,14 +15,32 @@ namespace SistemaDeMatriculas
     public partial class Matricula : Form
     {
         private Cconexion objetoConexion;
+        private string nombreUsuario;
         public Matricula()
         {
             InitializeComponent();
             objetoConexion = new Cconexion();
         }
 
+        public Matricula(string nombreUsuario) : this()
+        {
+            this.nombreUsuario = nombreUsuario;
+        }
+
         private void Matricula_Load(object sender, EventArgs e)
         {
+            LimpiarCampos();
+            using (SqlConnection connection = objetoConexion.ObtenerConexion())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT Cedula FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        
+                    }
+                }
+            }
             //CargarCursos();
         }
         private void CargarCursos()
