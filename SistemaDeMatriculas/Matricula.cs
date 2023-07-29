@@ -15,227 +15,180 @@ namespace SistemaDeMatriculas
     public partial class Matricula : Form
     {
         private Cconexion objetoConexion;
-        private string nombreUsuario;
+        List<string> IdentificacionesList = new List<string>
+        {
+            "Cédula de Nacional",
+            "Cédula de Extranjería",
+            "Cédula de Ciudadanía",
+            "Pasaporte"
+        };
+        List<string> GenerosList = new List<string>
+        {
+            "Masculino",
+            "Femenino",
+            "Binario"
+        };
         public Matricula()
         {
             InitializeComponent();
             objetoConexion = new Cconexion();
         }
 
-        public Matricula(string nombreUsuario) : this()
-        {
-            this.nombreUsuario = nombreUsuario;
-        }
-
         private void Matricula_Load(object sender, EventArgs e)
         {
             LimpiarCampos();
-            using (SqlConnection connection = objetoConexion.ObtenerConexion())
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT Cedula FROM Usuarios WHERE NombreUsuario = @NombreUsuario", connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        
-                    }
-                }
-            }
-            //CargarCursos();
+            cmbIdentificacion.DataSource = IdentificacionesList;
+            cmbGenero.DataSource = GenerosList;
+            CargarCarreraSemestre();
         }
-        private void CargarCursos()
+
+        private void CargarCarreraSemestre()
         {
-            cmbSemestre.Items.Clear(); // Limpiamos los elementos del ComboBox para evitar duplicados
+            string queryCarrera = "SELECT Nombre FROM Carrera";
+            string querySemestre = "SELECT Nombre FROM Semestre";
 
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("SELECT ID, Nombre FROM Cursos", connection))
+                using (SqlCommand command = new SqlCommand(queryCarrera, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        List<string> CarrerasList = new List<string>();
                         while (reader.Read())
                         {
-                            // Obtenemos el ID y Nombre del curso desde la consulta
-                            int idCurso = Convert.ToInt32(reader["ID"]);
-                            string nombreCurso = reader["Nombre"].ToString();
-
-                            // Agregamos el curso al ComboBox
-                            cmbSemestre.Items.Add(new CursoItem(idCurso, nombreCurso));
+                            string NombreC = reader["Nombre"].ToString();
+                            CarrerasList.Add(NombreC);
                         }
+                        reader.Close();
+                        // Asignar los datos recuperados al DataSource del ComboBox
+                        cmbCarrera.DataSource = CarrerasList;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar los datos desde la base de datos: " + ex.Message);
                     }
                 }
             }
-
-            // Si hay cursos disponibles en el ComboBox, seleccionamos el primer curso
-            if (cmbSemestre.Items.Count > 0)
+            using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
-                cmbSemestre.SelectedIndex = 0;
+                using (SqlCommand command = new SqlCommand(querySemestre, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        List<string> SemestreList = new List<string>();
+                        while (reader.Read())
+                        {
+                            string NombreS = reader["Nombre"].ToString();
+                            SemestreList.Add(NombreS);
+                        }
+                        reader.Close();
+                        // Asignar los datos recuperados al DataSource del ComboBox
+                        cmbSemestre.DataSource = SemestreList;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar los datos desde la base de datos: " + ex.Message);
+                    }
+                }
             }
         }
-
-        // Clase para almacenar el ID y Nombre del curso en el ComboBox
-        private class CursoItem
-        {
-            public int Id { get; set; }
-            public string Nombre { get; set; }
-
-            public CursoItem(int id, string nombre)
-            {
-                Id = id;
-                Nombre = nombre;
-            }
-
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
-
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtener los datos ingresados por el usuario en los campos del formulario
-            string nombreEstudiante = txtNacionalidad.Text;
-            string apellidoEstudiante = txtApellidos.Text;
+            string TipoIdentificacion = cmbIdentificacion.SelectedItem.ToString();
+            string TipoGenero = cmbGenero.SelectedItem.ToString();
+            string Nombre = txtNombre.Text;
+            string Apellidos = txtApellidos.Text;
+            string Cedula = txtCedula.Text;
+            string Telefono = txtTelefono.Text;
+            string Nacionalidad = txtNacionalidad.Text;
+            string Direccion = txtDireccion.Text;
+            string Provincia = txtProvincia.Text;
+            string Canton = txtCanton.Text;
+            string Distrito = txtDistrito.Text;
+            string Email = txtEmail.Text;
             DateTime fechaNacimiento = dtp1.Value;
-            string direccion = txtDireccion.Text;
-            string cedula = txtCedula.Text;
-            string telefono = txtTelefono.Text;
-            string correoElectronico = txtEmail.Text;
-            string nombreCurso = cmbSemestre.Text; // Obtener el nombre del curso seleccionado en el ComboBox
-
-            // Verificar que se hayan completado todos los campos requeridos
-            if (string.IsNullOrEmpty(nombreEstudiante) || string.IsNullOrEmpty(apellidoEstudiante)
-                || string.IsNullOrEmpty(direccion) || string.IsNullOrEmpty(cedula)
-                || string.IsNullOrEmpty(telefono) || string.IsNullOrEmpty(correoElectronico)
-                || string.IsNullOrEmpty(nombreCurso))
+            string Carrera = cmbCarrera.SelectedItem.ToString();
+            string Semestre = cmbSemestre.SelectedItem.ToString();
+            
+            if (string.IsNullOrEmpty(TipoIdentificacion) || string.IsNullOrEmpty(TipoGenero) || string.IsNullOrEmpty(Nombre) ||
+                string.IsNullOrEmpty(Apellidos) || string.IsNullOrEmpty(Cedula) || string.IsNullOrEmpty(Telefono) || string.IsNullOrEmpty(Nacionalidad) ||
+                string.IsNullOrEmpty(Direccion) || string.IsNullOrEmpty(Provincia) || string.IsNullOrEmpty(Canton) || string.IsNullOrEmpty(Distrito) ||
+                string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Carrera) || string.IsNullOrEmpty(Semestre))
             {
                 MessageBox.Show("Por favor, complete todos los campos requeridos.");
                 return;
             }
-
-            // Realizar la lógica para insertar el estudiante en la base de datos
-            int idEstudiante = AgregarEstudiante(nombreEstudiante, apellidoEstudiante, fechaNacimiento, direccion, cedula, telefono, correoElectronico);
-
-            if (idEstudiante != -1)
-            {
-                // Realizar la lógica para insertar la matrícula en la base de datos
-                // Aquí debes hacer las consultas necesarias para obtener el ID del curso
-                // y luego insertar un registro en la tabla 'Matriculas' con la información de la matrícula.
-
-                int idCurso = ObtenerIdCurso(nombreCurso);
-
-                if (idCurso != -1)
-                {
-                    if (GuardarMatricula(idEstudiante, idCurso))
-                    {
-                        MessageBox.Show("Matrícula guardada exitosamente.");
-                        LimpiarCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al guardar la matrícula. Inténtelo nuevamente.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo obtener el ID del curso. Verifique el nombre del curso ingresado.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error al agregar el estudiante. Inténtelo nuevamente.");
-            }
-
+            AgregarEstudiante(Nacionalidad, TipoIdentificacion, TipoGenero, Nombre, Direccion, Email, Carrera, Semestre, fechaNacimiento, Cedula, Telefono, Apellidos, Provincia, Canton, Distrito);
+            MessageBox.Show("Registro de la matricula exitoso!");
+            
         }
-        private int ObtenerIdCurso(string nombreCurso)
-        {
-            // Realizar la consulta a la base de datos para obtener el ID del curso según su nombre
-            int idCurso = -1;
-
-            using (SqlConnection connection = objetoConexion.ObtenerConexion())
-            {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("SELECT ID FROM Cursos WHERE Nombre = @NombreCurso", connection))
-                {
-                    command.Parameters.AddWithValue("@NombreCurso", nombreCurso);
-
-                    object result = command.ExecuteScalar();
-                    if (result != null && int.TryParse(result.ToString(), out idCurso))
-                    {
-                        return idCurso;
-                    }
-                }
-            }
-
-            return idCurso;
-        }
-        private bool GuardarMatricula(int idEstudiante, int idCurso)
-        {
-            // Realizar la lógica para guardar la matrícula en la base de datos
-            // Puedes insertar un nuevo registro en la tabla 'Matriculas' con los IDs del estudiante y el curso
-            // Además, puedes guardar la fecha de matrícula actual usando DateTime.Now
-
-            // Ejemplo de inserción en la tabla 'Matriculas' (adaptar a tu estructura de tabla)
-            using (SqlConnection connection = objetoConexion.ObtenerConexion())
-            {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("INSERT INTO Matriculas (IDEstudiante, IDCurso, FechaMatricula) VALUES (@IDEstudiante, @IDCurso, @FechaMatricula)", connection))
-                {
-                    command.Parameters.AddWithValue("@IDEstudiante", idEstudiante);
-                    command.Parameters.AddWithValue("@IDCurso", idCurso);
-                    command.Parameters.AddWithValue("@FechaMatricula", DateTime.Now);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
-                }
-            }
-        }
-        private int AgregarEstudiante(string nombre, string apellido, DateTime fechaNacimiento, string direccion, string cedula, string telefono, string correoElectronico)
+  
+        private int AgregarEstudiante(string Nacionalidad, string TipoIdenficacion, string TipoGenero, string Nombre, string Direccion, string Email, string Carrera, string Semestre,  DateTime fechaNacimiento, string Cedula, string Telefono, string Apellidos, string Provincia, string Canton, string Distrito)
         {
             // Realizar la lógica para agregar el estudiante a la base de datos
             // Puedes insertar un nuevo registro en la tabla 'Estudiantes' y obtener el ID del estudiante recién agregado.
-
             using (SqlConnection connection = objetoConexion.ObtenerConexion())
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO Estudiantes (Nombre, Apellido, FechaNacimiento, Direccion, Cedula, Telefono, CorreoElectronico) VALUES (@Nombre, @Apellido, @FechaNacimiento, @Direccion, @Cedula, @Telefono, @CorreoElectronico); SELECT SCOPE_IDENTITY();", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Matricula(Nacionalidad, TipoIdentificacion, Genero, Nombre, Direccion, Email, Carrera, Semestre, FechaNacimiento, Cedula, Telefono, Apellidos, Provincia, Canton, Distrito) VALUES(@Nacionalidad, @TipoIdentificacion, @Genero, @Nombre, @Direccion, @Email, @Carrera, @Semestre, @FechaNacimiento, @Cedula, @Telefono, @Apellidos, @Provincia, @Canton, @Distrito)", connection))
                 {
-                    command.Parameters.AddWithValue("@Nombre", nombre);
-                    command.Parameters.AddWithValue("@Apellido", apellido);
+                    command.Parameters.AddWithValue("@Nacionalidad", Nacionalidad);
+                    command.Parameters.AddWithValue("@TipoIdentificacion", TipoIdenficacion);
+                    command.Parameters.AddWithValue("@Genero", TipoGenero);
+                    command.Parameters.AddWithValue("@Nombre", Nombre);
+                    command.Parameters.AddWithValue("@Direccion", Direccion);
+                    command.Parameters.AddWithValue("@Email", Email);
+                    command.Parameters.AddWithValue("@Carrera", Carrera);
+                    command.Parameters.AddWithValue("@Semestre", Semestre);
                     command.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
-                    command.Parameters.AddWithValue("@Direccion", direccion);
-                    command.Parameters.AddWithValue("@Cedula", cedula);
-                    command.Parameters.AddWithValue("@Telefono", telefono);
-                    command.Parameters.AddWithValue("@CorreoElectronico", correoElectronico);
+                    command.Parameters.AddWithValue("@Cedula", Cedula);
+                    command.Parameters.AddWithValue("@Telefono", Telefono);
+                    command.Parameters.AddWithValue("@Apellidos", Apellidos);
+                    command.Parameters.AddWithValue("@Provincia", Provincia);
+                    command.Parameters.AddWithValue("@Canton", Canton);
+                    command.Parameters.AddWithValue("@Distrito", Distrito);
 
-                    object result = command.ExecuteScalar();
+                    // Ejecutar la consulta para realizar la inserción
+                    int rowsAffected = command.ExecuteNonQuery();
 
-                    if (result != null && int.TryParse(result.ToString(), out int idEstudiante))
+                    // Verificar si se insertó al menos una fila (rowsAffected > 0)
+                    if (rowsAffected > 0)
                     {
-                        return idEstudiante;
+                        return 1;
                     }
                 }
             }
-
-            return -1; // Retornar -1 si hubo un error al agregar el estudiante.
+            return -1;
         }
 
         private void LimpiarCampos()
         {
             // Limpiar los campos del formulario después de guardar la matrícula
-            txtNacionalidad.Text = "";
+            cmbIdentificacion.SelectedIndex = -1; ;
+            cmbGenero.SelectedIndex = -1;
+            txtNombre.Text = "";
             txtApellidos.Text = "";
-            dtp1.Value = DateTime.Now;
-            txtDireccion.Text = "";
             txtCedula.Text = "";
             txtTelefono.Text = "";
+            txtNacionalidad.Text = "";
+            txtDireccion.Text = "";
+            txtProvincia.Text = "";
+            txtCanton.Text = "";
+            txtDistrito.Text = "";
             txtEmail.Text = "";
+            dtp1.Value = DateTime.Now;
+            cmbCarrera.SelectedIndex = -1;
+            cmbSemestre.SelectedIndex = -1;
+            txtNacionalidad.Text = "";
+            txtApellidos.Text = "";
             cmbSemestre.SelectedIndex = -1;
         }
 

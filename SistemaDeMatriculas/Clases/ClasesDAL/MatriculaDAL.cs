@@ -13,6 +13,8 @@ namespace SistemaDeMatriculas.Clases
             this.conexion = conexion;
         }
 
+        
+
         // Método para agregar una nueva matrícula a la base de datos
         public bool AgregarMatricula(Matricula matricula)
         {

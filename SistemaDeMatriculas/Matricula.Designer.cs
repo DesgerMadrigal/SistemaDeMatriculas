@@ -68,7 +68,7 @@ namespace SistemaDeMatriculas
             this.Nacionalidad.AutoSize = true;
             this.Nacionalidad.BackColor = System.Drawing.Color.Transparent;
             this.Nacionalidad.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nacionalidad.Location = new System.Drawing.Point(97, 9);
+            this.Nacionalidad.Location = new System.Drawing.Point(167, 177);
             this.Nacionalidad.Name = "Nacionalidad";
             this.Nacionalidad.Size = new System.Drawing.Size(83, 15);
             this.Nacionalidad.TabIndex = 35;
@@ -78,7 +78,7 @@ namespace SistemaDeMatriculas
             // txtNacionalidad
             // 
             this.txtNacionalidad.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNacionalidad.Location = new System.Drawing.Point(100, 27);
+            this.txtNacionalidad.Location = new System.Drawing.Point(170, 195);
             this.txtNacionalidad.Name = "txtNacionalidad";
             this.txtNacionalidad.Size = new System.Drawing.Size(191, 23);
             this.txtNacionalidad.TabIndex = 34;
@@ -89,7 +89,7 @@ namespace SistemaDeMatriculas
             this.Apellidos.AutoSize = true;
             this.Apellidos.BackColor = System.Drawing.Color.Transparent;
             this.Apellidos.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Apellidos.Location = new System.Drawing.Point(365, 137);
+            this.Apellidos.Location = new System.Drawing.Point(435, 49);
             this.Apellidos.Name = "Apellidos";
             this.Apellidos.Size = new System.Drawing.Size(60, 15);
             this.Apellidos.TabIndex = 37;
@@ -98,7 +98,7 @@ namespace SistemaDeMatriculas
             // txtApellidos
             // 
             this.txtApellidos.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidos.Location = new System.Drawing.Point(368, 153);
+            this.txtApellidos.Location = new System.Drawing.Point(438, 65);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(191, 23);
             this.txtApellidos.TabIndex = 36;
@@ -108,7 +108,7 @@ namespace SistemaDeMatriculas
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(365, 7);
+            this.label1.Location = new System.Drawing.Point(435, 175);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 15);
             this.label1.TabIndex = 39;
@@ -116,7 +116,7 @@ namespace SistemaDeMatriculas
             // 
             // dtp1
             // 
-            this.dtp1.Location = new System.Drawing.Point(368, 25);
+            this.dtp1.Location = new System.Drawing.Point(438, 193);
             this.dtp1.Name = "dtp1";
             this.dtp1.Size = new System.Drawing.Size(200, 20);
             this.dtp1.TabIndex = 40;
@@ -126,7 +126,7 @@ namespace SistemaDeMatriculas
             this.Direccion.AutoSize = true;
             this.Direccion.BackColor = System.Drawing.Color.Transparent;
             this.Direccion.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Direccion.Location = new System.Drawing.Point(97, 181);
+            this.Direccion.Location = new System.Drawing.Point(167, 221);
             this.Direccion.Name = "Direccion";
             this.Direccion.Size = new System.Drawing.Size(64, 15);
             this.Direccion.TabIndex = 42;
@@ -135,7 +135,7 @@ namespace SistemaDeMatriculas
             // txtDireccion
             // 
             this.txtDireccion.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(100, 197);
+            this.txtDireccion.Location = new System.Drawing.Point(170, 237);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(191, 23);
             this.txtDireccion.TabIndex = 41;
@@ -145,7 +145,7 @@ namespace SistemaDeMatriculas
             this.Telefono.AutoSize = true;
             this.Telefono.BackColor = System.Drawing.Color.Transparent;
             this.Telefono.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Telefono.Location = new System.Drawing.Point(365, 95);
+            this.Telefono.Location = new System.Drawing.Point(435, 135);
             this.Telefono.Name = "Telefono";
             this.Telefono.Size = new System.Drawing.Size(58, 15);
             this.Telefono.TabIndex = 44;
@@ -154,7 +154,7 @@ namespace SistemaDeMatriculas
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(368, 111);
+            this.txtTelefono.Location = new System.Drawing.Point(438, 151);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(191, 23);
             this.txtTelefono.TabIndex = 43;
@@ -164,7 +164,7 @@ namespace SistemaDeMatriculas
             this.Email.AutoSize = true;
             this.Email.BackColor = System.Drawing.Color.Transparent;
             this.Email.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Email.Location = new System.Drawing.Point(97, 223);
+            this.Email.Location = new System.Drawing.Point(167, 263);
             this.Email.Name = "Email";
             this.Email.Size = new System.Drawing.Size(112, 15);
             this.Email.TabIndex = 46;
@@ -173,7 +173,7 @@ namespace SistemaDeMatriculas
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(100, 239);
+            this.txtEmail.Location = new System.Drawing.Point(170, 279);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(191, 23);
             this.txtEmail.TabIndex = 45;
@@ -183,7 +183,7 @@ namespace SistemaDeMatriculas
             this.Cedula.AutoSize = true;
             this.Cedula.BackColor = System.Drawing.Color.Transparent;
             this.Cedula.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cedula.Location = new System.Drawing.Point(365, 48);
+            this.Cedula.Location = new System.Drawing.Point(435, 88);
             this.Cedula.Name = "Cedula";
             this.Cedula.Size = new System.Drawing.Size(47, 15);
             this.Cedula.TabIndex = 48;
@@ -193,7 +193,7 @@ namespace SistemaDeMatriculas
             // txtCedula
             // 
             this.txtCedula.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.Location = new System.Drawing.Point(368, 64);
+            this.txtCedula.Location = new System.Drawing.Point(438, 104);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(191, 23);
             this.txtCedula.TabIndex = 47;
@@ -202,7 +202,7 @@ namespace SistemaDeMatriculas
             // cmbSemestre
             // 
             this.cmbSemestre.FormattingEnabled = true;
-            this.cmbSemestre.Location = new System.Drawing.Point(100, 325);
+            this.cmbSemestre.Location = new System.Drawing.Point(170, 365);
             this.cmbSemestre.Name = "cmbSemestre";
             this.cmbSemestre.Size = new System.Drawing.Size(191, 21);
             this.cmbSemestre.TabIndex = 53;
@@ -213,7 +213,7 @@ namespace SistemaDeMatriculas
             this.Semestree.AutoSize = true;
             this.Semestree.BackColor = System.Drawing.Color.Transparent;
             this.Semestree.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Semestree.Location = new System.Drawing.Point(97, 307);
+            this.Semestree.Location = new System.Drawing.Point(167, 347);
             this.Semestree.Name = "Semestree";
             this.Semestree.Size = new System.Drawing.Size(60, 15);
             this.Semestree.TabIndex = 52;
@@ -225,7 +225,7 @@ namespace SistemaDeMatriculas
             this.btnRegresar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRegresar.FlatAppearance.BorderSize = 0;
             this.btnRegresar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegresar.Location = new System.Drawing.Point(361, 325);
+            this.btnRegresar.Location = new System.Drawing.Point(431, 365);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(90, 25);
             this.btnRegresar.TabIndex = 55;
@@ -238,7 +238,7 @@ namespace SistemaDeMatriculas
             this.btnGuardar.BackColor = System.Drawing.Color.White;
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(484, 325);
+            this.btnGuardar.Location = new System.Drawing.Point(554, 365);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 25);
             this.btnGuardar.TabIndex = 54;
@@ -251,7 +251,7 @@ namespace SistemaDeMatriculas
             this.Identificacion.AutoSize = true;
             this.Identificacion.BackColor = System.Drawing.Color.Transparent;
             this.Identificacion.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Identificacion.Location = new System.Drawing.Point(97, 53);
+            this.Identificacion.Location = new System.Drawing.Point(167, 93);
             this.Identificacion.Name = "Identificacion";
             this.Identificacion.Size = new System.Drawing.Size(131, 15);
             this.Identificacion.TabIndex = 56;
@@ -261,7 +261,7 @@ namespace SistemaDeMatriculas
             // cmbGenero
             // 
             this.cmbGenero.FormattingEnabled = true;
-            this.cmbGenero.Location = new System.Drawing.Point(100, 113);
+            this.cmbGenero.Location = new System.Drawing.Point(170, 153);
             this.cmbGenero.Name = "cmbGenero";
             this.cmbGenero.Size = new System.Drawing.Size(191, 21);
             this.cmbGenero.TabIndex = 59;
@@ -271,7 +271,7 @@ namespace SistemaDeMatriculas
             this.Genero.AutoSize = true;
             this.Genero.BackColor = System.Drawing.Color.Transparent;
             this.Genero.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Genero.Location = new System.Drawing.Point(97, 95);
+            this.Genero.Location = new System.Drawing.Point(167, 135);
             this.Genero.Name = "Genero";
             this.Genero.Size = new System.Drawing.Size(49, 15);
             this.Genero.TabIndex = 58;
@@ -282,7 +282,7 @@ namespace SistemaDeMatriculas
             this.Nombre.AutoSize = true;
             this.Nombre.BackColor = System.Drawing.Color.Transparent;
             this.Nombre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nombre.Location = new System.Drawing.Point(97, 137);
+            this.Nombre.Location = new System.Drawing.Point(167, 49);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(55, 15);
             this.Nombre.TabIndex = 61;
@@ -291,7 +291,7 @@ namespace SistemaDeMatriculas
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(100, 153);
+            this.txtNombre.Location = new System.Drawing.Point(170, 65);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(191, 23);
             this.txtNombre.TabIndex = 60;
@@ -301,7 +301,7 @@ namespace SistemaDeMatriculas
             this.Canton.AutoSize = true;
             this.Canton.BackColor = System.Drawing.Color.Transparent;
             this.Canton.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Canton.Location = new System.Drawing.Point(365, 223);
+            this.Canton.Location = new System.Drawing.Point(435, 263);
             this.Canton.Name = "Canton";
             this.Canton.Size = new System.Drawing.Size(48, 15);
             this.Canton.TabIndex = 63;
@@ -310,7 +310,7 @@ namespace SistemaDeMatriculas
             // txtCanton
             // 
             this.txtCanton.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCanton.Location = new System.Drawing.Point(368, 239);
+            this.txtCanton.Location = new System.Drawing.Point(438, 279);
             this.txtCanton.Name = "txtCanton";
             this.txtCanton.Size = new System.Drawing.Size(191, 23);
             this.txtCanton.TabIndex = 62;
@@ -320,7 +320,7 @@ namespace SistemaDeMatriculas
             this.Provincia.AutoSize = true;
             this.Provincia.BackColor = System.Drawing.Color.Transparent;
             this.Provincia.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Provincia.Location = new System.Drawing.Point(365, 181);
+            this.Provincia.Location = new System.Drawing.Point(435, 221);
             this.Provincia.Name = "Provincia";
             this.Provincia.Size = new System.Drawing.Size(63, 15);
             this.Provincia.TabIndex = 65;
@@ -329,7 +329,7 @@ namespace SistemaDeMatriculas
             // txtProvincia
             // 
             this.txtProvincia.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProvincia.Location = new System.Drawing.Point(368, 197);
+            this.txtProvincia.Location = new System.Drawing.Point(438, 237);
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.Size = new System.Drawing.Size(191, 23);
             this.txtProvincia.TabIndex = 64;
@@ -339,7 +339,7 @@ namespace SistemaDeMatriculas
             this.Distrito.AutoSize = true;
             this.Distrito.BackColor = System.Drawing.Color.Transparent;
             this.Distrito.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Distrito.Location = new System.Drawing.Point(365, 265);
+            this.Distrito.Location = new System.Drawing.Point(435, 305);
             this.Distrito.Name = "Distrito";
             this.Distrito.Size = new System.Drawing.Size(53, 15);
             this.Distrito.TabIndex = 67;
@@ -348,7 +348,7 @@ namespace SistemaDeMatriculas
             // txtDistrito
             // 
             this.txtDistrito.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistrito.Location = new System.Drawing.Point(368, 281);
+            this.txtDistrito.Location = new System.Drawing.Point(438, 321);
             this.txtDistrito.Name = "txtDistrito";
             this.txtDistrito.Size = new System.Drawing.Size(191, 23);
             this.txtDistrito.TabIndex = 66;
@@ -356,7 +356,7 @@ namespace SistemaDeMatriculas
             // cmbCarrera
             // 
             this.cmbCarrera.FormattingEnabled = true;
-            this.cmbCarrera.Location = new System.Drawing.Point(100, 283);
+            this.cmbCarrera.Location = new System.Drawing.Point(170, 323);
             this.cmbCarrera.Name = "cmbCarrera";
             this.cmbCarrera.Size = new System.Drawing.Size(191, 21);
             this.cmbCarrera.TabIndex = 69;
@@ -366,7 +366,7 @@ namespace SistemaDeMatriculas
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(97, 265);
+            this.label2.Location = new System.Drawing.Point(167, 305);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 15);
             this.label2.TabIndex = 68;
@@ -375,7 +375,7 @@ namespace SistemaDeMatriculas
             // cmbIdentificacion
             // 
             this.cmbIdentificacion.FormattingEnabled = true;
-            this.cmbIdentificacion.Location = new System.Drawing.Point(100, 71);
+            this.cmbIdentificacion.Location = new System.Drawing.Point(170, 111);
             this.cmbIdentificacion.Name = "cmbIdentificacion";
             this.cmbIdentificacion.Size = new System.Drawing.Size(191, 21);
             this.cmbIdentificacion.TabIndex = 70;
